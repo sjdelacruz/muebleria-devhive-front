@@ -673,7 +673,7 @@ a:focus {
   color: #171717;
 }
 
-table, td {
+th {
   border: 1px solid;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -682,8 +682,7 @@ table, td {
   color: white;
 }
 
-table.th {
-border: 1px solid;
+td {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;

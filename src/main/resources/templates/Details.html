@@ -5,9 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width" , initial-scale="1.0">
-	<title>
-		<h1>Muebleria</h1>
-	</title>
+	<title>Muebleria</title>
 	<!-- slider stylesheet -->
 	<link rel="stylesheet" type="text/css"
 		href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
@@ -23,12 +21,16 @@
 	<link href="../static/css/responsive.css" rel="stylesheet" />
 </head>
 
+
 <body>
+	
 	<section class="service_section layout_padding">
-		<div class="container">
+		<div class="container" text-align: center>
 			<div class="custom_heading-container">
-				<h3 >
-					LISTA INMUEBLES
+				<h3>
+					<p  th:text="'Detalle inmueble ' + ${mueble.nombre}">
+					DETALLES INMUEBLE
+					</p>
 				</h3>
 			</div>
 		</div>
@@ -37,14 +39,33 @@
 				<div class="detail-box">
 					<table class="center" width="500">
 						<tr>
-							<th>Numero</th>
-							<th>Nombre</th>
-							<th>Información</th>
+							<th>Caracteristicas</th>
+							<th>Valor</th>
 						</tr>
-						<tr th:with="mycounter=${counter.incrementAndGet()}" th:each="mueble : ${muebles}">
-							<td align="center" width="10%" th:text="${mycounter}">numero</td>
-							<td align="center" width="70%" th:text="${mueble.nombre}">nombre</td>
-							<td align="center" width="20%"> <a th:href="@{/details/(id=${mueble.id})}">Más informacion</a></td>
+						
+						<tr>
+							<td>Dirección</th>
+							<td th:text="${mueble.direccion}">dummy</td>
+						</tr>
+						<tr>
+							<td>Tiempo construida:</td>
+							<td th:text="${mueble.antiguedad}">dummy</td>
+						</tr>
+						<tr>
+							<td># habitaciones</td>
+							<td th:text="${mueble.habitaciones}">dummy</td>
+						</tr>
+						<tr>
+							<td>¿Tiene estufa?</td>
+							<td th:text="${mueble.estufa} == true ? 'Si' : 'No'"></td>
+						</tr>
+						<tr>
+							<td>¿Tiene estacionamiento?</td>
+							<td th:text="${mueble.estacionamiento} == true ? 'Si' : 'No'"></td>
+						</tr>
+						<tr>
+							<td># aforo</td>
+							<td th:text="${mueble.capacidad}">dummy</td>
 						</tr>
 					</table>
 				</div>

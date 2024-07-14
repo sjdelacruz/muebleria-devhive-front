@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.muebleria_devhive.models.Mueble;
+import com.muebleria_devhive.models.MuebleLigero;
 
 import reactor.core.publisher.Mono;
 
@@ -24,7 +25,7 @@ public class MueblesService {
 		this.webClient = webClientBuilder.baseUrl(uri).build();
 	}
 	
-	public List<Mueble> getMuebles() {
+	public List<MuebleLigero> getMuebles() {
 		Mono<Object[]> response = this.webClient.get().accept(MediaType.APPLICATION_JSON)
 				  .retrieve().bodyToMono(Object[].class).log();
 		
@@ -33,8 +34,17 @@ public class MueblesService {
 		ObjectMapper mapper = new ObjectMapper();
 		
 		return Arrays.stream(objects)
-				  .map(object -> mapper.convertValue(object, Mueble.class))
+				  .map(object -> mapper.convertValue(object, MuebleLigero.class))
 				  .collect(Collectors.toList());
+	}
+	
+	public Mueble getMueble(Integer id) {
+		Mono<Mueble> response = this.webClient.get().uri("/"+id).accept(MediaType.APPLICATION_JSON)
+				  .retrieve().bodyToMono(Mueble.class).log();
+		
+		Mueble muebleDetalles = response.block();
+		
+		return muebleDetalles;
 	}
 	
 }
