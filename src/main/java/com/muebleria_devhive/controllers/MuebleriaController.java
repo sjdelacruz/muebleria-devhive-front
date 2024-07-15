@@ -19,7 +19,7 @@ public class MuebleriaController {
 	@Autowired
 	MueblesService service;
 	
-	@GetMapping("/index")
+	@GetMapping
 	public String getIndex(Model model) {
 		List<MuebleLigero> muebles = service.getMuebles();
 		model.addAttribute("muebles", muebles);
