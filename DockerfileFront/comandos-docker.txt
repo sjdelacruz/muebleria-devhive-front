@@ -1,0 +1,2 @@
+docker build -t muebleriafront ./
+docker run -d --name muebleria-container -p 8081:8080 muebleriafront
